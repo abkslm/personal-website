@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def home():
     theme = 'dark'
     light_active = ''
@@ -27,15 +27,12 @@ def home():
 
     theme_picker = render_template(
         'theme_picker.html.template',
-        theme=theme,
         light_active=light_active,
         dark_active=dark_active,
-        btn_accessible_color=btn_accessible_color
     )
 
     accessibility_dropdown = render_template(
         'accessibility_dropdown.html.template',
-        theme=theme,
         btn_accessible_color=btn_accessible_color,
         theme_picker=theme_picker
     )
@@ -49,4 +46,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=2121)
+    app.run(host='0.0.0.0', port=8000)
