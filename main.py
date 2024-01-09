@@ -26,19 +26,19 @@ def home():
         btn_accessible_color = 'text-bg-dark'
 
     theme_picker = render_template(
-        'theme_picker.html.template',
+        'theme_picker.html',
         light_active=light_active,
         dark_active=dark_active,
     )
 
     accessibility_dropdown = render_template(
-        'accessibility_dropdown.html.template',
+        'accessibility_dropdown.html',
         btn_accessible_color=btn_accessible_color,
         theme_picker=theme_picker
     )
 
     return render_template(
-        'index.html.template',
+        'index.html',
         theme=theme,
         accessibility_dropdown=accessibility_dropdown,
         title='Andrew B. Moore'
