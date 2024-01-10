@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     theme = 'dark'
-    light_active = ''
-    dark_active = 'border_info'
+    light_border = ''
+    dark_border = 'border_info'
     btn_accessible_color = 'text-bg-light'
 
     if request.method == 'GET':
@@ -17,18 +17,18 @@ def home():
             theme = 'light'
 
     if theme == 'dark':
-        dark_active = 'border-primary'
-        light_active = 'border-secondary'
+        dark_border = 'border-primary'
+        light_border = 'border-secondary'
         btn_accessible_color = 'text-bg-light'
     elif theme == 'light':
-        dark_active = 'border-secondary'
-        light_active = 'border-primary'
+        dark_border = 'border-secondary'
+        light_border = 'border-primary'
         btn_accessible_color = 'text-bg-dark'
 
     theme_picker = render_template(
         'theme_picker.html',
-        light_active=light_active,
-        dark_active=dark_active,
+        light_active=light_border,
+        dark_active=dark_border,
     )
 
     accessibility_dropdown = render_template(
