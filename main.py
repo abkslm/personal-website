@@ -27,14 +27,12 @@ def home():
 
     theme_picker = render_template(
         'theme_picker.html',
-        theme=theme,
         light_active=light_active,
         dark_active=dark_active,
     )
 
     accessibility_dropdown = render_template(
         'accessibility_dropdown.html',
-        theme=theme,
         btn_accessible_color=btn_accessible_color,
         theme_picker=theme_picker
     )
