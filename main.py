@@ -27,8 +27,8 @@ def home():
 
     theme_picker = render_template(
         'theme_picker.html',
-        light_active=light_border,
-        dark_active=dark_border,
+        light_border=light_border,
+        dark_border=dark_border,
     )
 
     accessibility_dropdown = render_template(
