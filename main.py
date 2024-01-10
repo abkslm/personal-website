@@ -3,17 +3,17 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def home():
     theme = 'dark'
     light_active = ''
     dark_active = 'border_info'
     btn_accessible_color = 'text-bg-light'
 
-    if request.method == 'POST':
-        if request.form.get('theme') == 'dark':
+    if request.method == 'GET':
+        if request.args.get('theme') == 'dark':
             theme = 'dark'
-        elif request.form.get('theme') == 'light':
+        elif request.args.get('theme') == 'light':
             theme = 'light'
 
     if theme == 'dark':
