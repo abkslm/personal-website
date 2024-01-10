@@ -3,6 +3,5 @@ services:
   personal-website:
     build: ./
     container_name: personal-website
-    image: "localhost/personal-website-flask:latest"
     restart: always
     network_mode: host
