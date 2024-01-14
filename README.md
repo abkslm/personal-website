@@ -14,7 +14,7 @@
   - SSL/TLS
   - Polish
   - Mirage
-  - Rocket Loader
+  - Rocket Loader™
   - Auto Minify
   - Tiered Cache
   - Super Bot Fight Mode
