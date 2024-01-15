@@ -1,16 +1,15 @@
 # personal website
 
-### abkslm.com/blakeslee.me utilizes:
+### [abkslm.com](https://abkslm.com)/[blakeslee.me](https://blakeslee.me) utilizes:
 - Bootstrap
 - Gunicorn
 - Flask / Python
 - Docker Compose / Podman
-- Fedora Server
 - NGINX (Reverse Proxy)
 - Cloudflare
   - Tunnel
-  - Argo Smart Routing
   - Firewall
+  - Argo Smart Routing
   - SSL/TLS
   - Polish
   - Mirage
@@ -19,3 +18,19 @@
   - Tiered Cache
   - Super Bot Fight Mode
   - Privacy-Preserving Analytics
+ 
+Additional Services:
+- orwell.abkslm.com (Redirect/Analytics Server)
+  - NGINX
+  - Docker Compose 
+  - Cloudflare
+    - Tunnel
+    - Firewall
+    - Argo Smart Routing
+    - SSL/TLS
+    - Privacy-Preserving Analytics
+- static.abkslm.com (Static Asset Server)
+  - NGINX
+  - Docker Compose
+  - Cloudflare
+    - *Same as abkslm.com*
