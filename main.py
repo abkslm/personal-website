@@ -44,7 +44,6 @@ def home():
         'index.html',
         theme=theme,
         accessibility_dropdown=accessibility_dropdown,
-        signature_color=signature_color,
         title='Andrew B. Moore'
     )
 
