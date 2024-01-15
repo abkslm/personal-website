@@ -1,0 +1,9 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.signature-dark {
+  filter: invert(88%) sepia(8%) saturate(118%) hue-rotate(169deg) brightness(105%) contrast(87%);
+}
+
+.signature-light {
+  filter: invert(9%) sepia(17%) saturate(616%) hue-rotate(168deg) brightness(91%) contrast(85%);
+}
