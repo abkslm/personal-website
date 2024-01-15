@@ -9,6 +9,7 @@ def home():
     light_border = ''
     dark_border = 'border_info'
     btn_accessible_color = 'text-bg-light'
+    signature_color = 'white'
 
     if request.method == 'GET':
         if request.args.get('theme') == 'dark':
@@ -20,10 +21,12 @@ def home():
         dark_border = 'border-primary'
         light_border = 'border-secondary'
         btn_accessible_color = 'text-bg-light'
+        signature_color = 'white'
     elif theme == 'light':
         dark_border = 'border-secondary'
         light_border = 'border-primary'
         btn_accessible_color = 'text-bg-dark'
+        signature_color = 'black'
 
     theme_picker = render_template(
         'theme_picker.html',
@@ -41,6 +44,7 @@ def home():
         'index.html',
         theme=theme,
         accessibility_dropdown=accessibility_dropdown,
+        signature_color=signature_color,
         title='Andrew B. Moore'
     )
 
