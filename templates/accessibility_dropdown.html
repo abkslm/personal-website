@@ -1,12 +1,12 @@
 <div class="btn-group dropdown">
-    <button type="button" class="btn {{btn_accessible_color}} dropdown-toggle pt-2" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn {{btn_accessible_color}} dropdown-toggle pt-2 accessibility-btn" data-bs-toggle="dropdown" aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-fill align-top" viewBox="0 0 16 16">
             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
         </svg>
         Accessibility
     </button>
-    <ul class="dropdown-menu text-bg-light p-2">
+    <ul class="dropdown-menu p-3 border-0 shadow-lg rounded-3 glass-dropdown">
         <li>
             {{ theme_picker | safe }}
         </li>
