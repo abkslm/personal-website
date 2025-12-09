@@ -5,7 +5,7 @@
   --text-secondary: #c2c5aa;
   /* Slightly warmer text to match olive */
 
-  --glass-bg: rgba(20, 24, 15, 0.95);
+  --glass-bg: rgba(20, 24, 15, 0.99);
   --glass-border: rgba(255, 255, 255, 0.06);
   --glass-highlight: rgba(255, 255, 255, 0.08);
   --glass-blur: 40px;
