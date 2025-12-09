@@ -673,6 +673,17 @@ class BackgroundRenderer {
   }
 }
 
+
 // Start Renderer
 fetchAndRenderCards();
 new BackgroundRenderer();
+
+// Handle Resize (Debounced)
+let resizeTimeout: number;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = window.setTimeout(() => {
+    // Re-measure and re-init scroll system to account for new widths/heights
+    initScrollSystem();
+  }, 100);
+});

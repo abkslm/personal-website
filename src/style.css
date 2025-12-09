@@ -303,6 +303,7 @@ footer {
   /* Fill wrapper */
   /* Remove absolute positioning styles from here */
 }
+
 @media (max-width: 600px) {
   .glass-card {
     padding: 2rem;
