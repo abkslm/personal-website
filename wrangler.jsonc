@@ -1,5 +1,7 @@
 {
     "name": "personal-website",
     "compatibility_date": "2025-12-09",
-    "main": "src/main.ts"
+    "assets": {
+        "directory": "./dist"
+    }
 }
