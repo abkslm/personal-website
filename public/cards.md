@@ -6,7 +6,7 @@ define:
 %%%
 
 # Hi! My name is Andrew.
-I'm a software **engineer**, infrastructure **nerd**, and a curious **human**.
+I'm a software **engineer**, infrastructure **nerd**, and curious **human**.
 [@github_icon](https://github.com/abkslm) [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume)
 
 
