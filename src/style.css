@@ -269,6 +269,11 @@ footer {
 
   .card-wrapper {
     width: 90%;
+    pointer-events: none;
+  }
+
+  .card-wrapper a {
+    pointer-events: auto;
   }
 }
 
