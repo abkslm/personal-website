@@ -39,7 +39,8 @@ body {
   -webkit-font-smoothing: antialiased;
 
   /* Subtle global gradient pulse */
-  background: radial-gradient(circle at 50% 50%, #2d3520 0%, #0a0c06 100%);
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 50% 50%, #2d3520 0%, #0a0c06 100%);
   background-size: 200% 200%;
   animation: bgPulse 20s ease infinite;
 }
