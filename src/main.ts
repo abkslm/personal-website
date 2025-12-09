@@ -7,6 +7,7 @@ let ICON_MAP: Record<string, string> = {};
 interface CardData {
   title: string;
   body: string;
+  variant?: 'default' | 'no-header';
 }
 
 // --- Configuration Parsing Logic ---
@@ -110,11 +111,21 @@ async function fetchAndRenderCards() {
 }
 
 function parseMarkdown(markdown: string): CardData[] {
-  // Split by H1 headers. distinct sections.
-  const parts = markdown.split(/^# /m).filter(p => p.trim().length > 0);
+  // Split by H1 headers or "!!" blocks. Use lookahead to keep delimiter.
+  const parts = markdown.split(/(?=^# |^!!)/m).filter(p => p.trim().length > 0);
 
   return parts.map(part => {
     const lines = part.split('\n');
+    let firstLine = lines[0];
+    let variant: 'default' | 'no-header' = 'default';
+
+    if (firstLine.startsWith('!!')) {
+      variant = 'no-header';
+      lines[0] = firstLine.replace(/^!!\s*/, '');
+    } else if (firstLine.startsWith('# ')) {
+      lines[0] = firstLine.replace(/^# /, '');
+    }
+
     let title = lines.shift()?.trim() || '';
 
     // Process title - keep the explicit <\n> or <br> support if needed, 
@@ -126,7 +137,7 @@ function parseMarkdown(markdown: string): CardData[] {
     const bodyBlocks = lines
       .map(line => line.trim())
       .filter(line => line.length > 0)
-      .map(line => {
+      .map((line) => {
         // Parse content
         let content = parseCustomSyntax(line)
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -140,6 +151,10 @@ function parseMarkdown(markdown: string): CardData[] {
         // Detect if this line is primarily social links
         // Heuristic: Check if it contains our class="social-link"
         if (content.includes('class="social-link"')) {
+          // If no-header card, skip the divider (especially if first item)
+          if (variant === 'no-header') {
+            return `<div class="links">${content}</div>`;
+          }
           return `<div class="divider-sm"></div><div class="links">${content}</div>`;
         } else {
           return `<p>${content}</p>`;
@@ -147,7 +162,7 @@ function parseMarkdown(markdown: string): CardData[] {
       });
 
     const body = bodyBlocks.join('');
-    return { title, body };
+    return { title, body, variant };
   });
 }
 
@@ -159,21 +174,28 @@ function renderCards(cards: CardData[]) {
   const container = document.getElementById('cards-container');
   if (!container) return;
 
-  container.innerHTML = cards.map((card, index) => `
-    <div class="card-wrapper" data-index="${index}">
-      <article class="glass-card">
-        <div class="content">
+  container.innerHTML = cards.map((card, index) => {
+    let headerHtml = '';
+    if (card.variant !== 'no-header') {
+      headerHtml = `
           <header>
             <h1>${card.title}</h1>
             <div class="divider"></div>
-          </header>
+          </header>`;
+    }
+
+    return `
+    <div class="card-wrapper" data-index="${index}">
+      <article class="glass-card">
+        <div class="content">
+          ${headerHtml}
           <section class="bio">
             ${card.body}
           </section>
         </div>
       </article>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 function initScrollSystem() {
