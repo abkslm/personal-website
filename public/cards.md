@@ -28,9 +28,9 @@ And of course, **this website**.
 [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume)
 
 # I write.
-**Machines Can't Think** - Dec. 2025
+**Machines Can't Think** - Dec. 15, 2025
 **Uploaded Intelligence is a Joke** - Jan. 2026
-**The Dead Internet is Here, It'll Be Ok** - Jan. 2026
+**The Internet's Last Line of Defense** - Jan. 2026
 
 
 [@substack_icon](https://brainslee.substack.com/)
