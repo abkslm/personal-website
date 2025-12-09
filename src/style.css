@@ -258,24 +258,7 @@ footer {
   opacity: 0.5;
 }
 
-@media (max-width: 600px) {
-  .glass-card {
-    padding: 2rem;
-  }
 
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  .card-wrapper {
-    width: 90%;
-    pointer-events: none;
-  }
-
-  .card-wrapper a {
-    pointer-events: auto;
-  }
-}
 
 #cards-container {
   display: flex;
@@ -319,4 +302,22 @@ footer {
   height: 100%;
   /* Fill wrapper */
   /* Remove absolute positioning styles from here */
+}
+@media (max-width: 600px) {
+  .glass-card {
+    padding: 2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-wrapper {
+    width: 90%;
+    pointer-events: none;
+  }
+
+  .card-wrapper a {
+    pointer-events: auto;
+  }
 }
