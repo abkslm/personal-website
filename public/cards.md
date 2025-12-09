@@ -21,6 +21,7 @@ And of course, **this website**.
 
 # I work.
 **Epsilon Labs** - Backend Software Engineer
+**Brink Labs** - Co-Founder, Infrastructure Engineer
 **USF CS** - Assistant System Administrator
 **USF CS** - Research Assistant
 **USF CS** - Teaching Assistant
