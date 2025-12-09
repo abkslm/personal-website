@@ -1,0 +1,293 @@
+:root {
+  --bg-color: #0f120a;
+  /* Deep dark olive base */
+  --text-primary: #f2f2f5;
+  --text-secondary: #c2c5aa;
+  /* Slightly warmer text to match olive */
+
+  --glass-bg: rgba(20, 24, 15, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-blur: 40px;
+
+  --brand-accent: #ffffff;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Lock window scroll */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+
+  -webkit-font-smoothing: antialiased;
+
+  /* Subtle global gradient pulse */
+  background: radial-gradient(circle at 50% 50%, #2d3520 0%, #0a0c06 100%);
+  background-size: 200% 200%;
+  animation: bgPulse 20s ease infinite;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.6;
+}
+
+#scroll-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  /* Ensure smooth scrolling on touch devices */
+  -webkit-overflow-scrolling: touch;
+}
+
+
+@keyframes bgPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  perspective: 2000px;
+  /* High perspective for rigid 3D feel */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Canvas Background */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Glass Card */
+.glass-card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  padding: 3rem 4rem;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(80px);
+  /* Increased blur to smooth gradients */
+  -webkit-backdrop-filter: blur(80px);
+
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid var(--glass-highlight);
+  /* Top highlight for depth */
+  border-radius: 24px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  /* Inner stroke only */
+
+  transition: transform 0.1s;
+  /* Faster transition for responsive tilt */
+  transform-style: preserve-3d;
+  /* transform-origin moved to wrapper */
+}
+
+/* Ensure content sits ABOVE the spotlight and noise layers */
+.glass-card>* {
+  position: relative;
+  z-index: 3;
+}
+
+/* Spotlight Reflection Effect */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  /* Gradient Spotlight - Overlay Mode for "Reveal" effect */
+  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.015),
+      transparent 40%);
+
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Noise overlay for the card to fix spotlight banding */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.04;
+  /* Reduced from 0.15 to be subtle */
+  z-index: 1;
+  pointer-events: none;
+  /* Tiny noise data URI to dither the spotlight */
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+}
+
+.glass-card:hover::after {
+  opacity: 1;
+}
+
+.glass-card:hover {
+  /* transform: translateY(-2px); Removed to avoid conflict with JS tilt */
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Typography & Layout */
+header h1 {
+  font-weight: 600;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.divider {
+  width: 80px;
+  height: 2px;
+  background: white;
+  margin: 1.5rem 0 2rem 0;
+  opacity: 0.2;
+}
+
+.divider-sm {
+  width: 100%;
+  height: 1px;
+  background: white;
+  margin: 2rem 0;
+  opacity: 0.1;
+}
+
+.bio p {
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.bio strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Social Links */
+.links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+.social-link {
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+  .glass-card {
+    padding: 2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+#cards-container {
+  display: flex;
+  /* Kept for initial stacking or fail-safe? Actually JS will handle position. */
+  /* We switch to fixed overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  perspective: 1000px;
+
+  /* Reset flex/padding as we manual position */
+  padding: 0;
+  pointer-events: none;
+  /* Allow clickthrough to body if needed, but cards will be auto */
+}
+
+.card-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  pointer-events: auto;
+  will-change: transform;
+  transform-origin: center top;
+
+  /* Filter Drop Shadow to respect inner clip-path */
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+
+  /* Ensure wrapper has size of content */
+  width: 100%;
+  max-width: 580px;
+}
+
+.glass-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Fill wrapper */
+  /* Remove absolute positioning styles from here */
+}
