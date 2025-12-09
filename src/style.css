@@ -1,6 +1,6 @@
 :root {
-  --bg-color: #0f120a;
-  /* Deep dark olive base */
+  --bg-color: #0a0c06;
+  /* Deep dark olive base (matches gradient end) */
   --text-primary: #f2f2f5;
   --text-secondary: #c2c5aa;
   /* Slightly warmer text to match olive */
@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: var(--bg-color);
+  /* Ensure base color for overscroll/loading */
+}
+
 html,
 body {
   margin: 0;
@@ -28,7 +33,6 @@ body {
   width: 100%;
   overflow: hidden;
 
-  background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: var(--font-sans);
 
