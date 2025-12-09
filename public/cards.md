@@ -15,7 +15,7 @@ This website is a work in progress.
 # I build.
 **Brink** - An AI-powered mental health app.
 **Eucalyptus** - A FHIR-native medical data platform.
-**Icarus** - An LLM-powered Twitch chatbot.
+**Icarus** - An LLM-powered Twitch moderator.
 And of course, **this website**.
 [@github_icon](https://github.com/abkslm)
 
