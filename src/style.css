@@ -5,10 +5,10 @@
   --text-secondary: #c2c5aa;
   /* Slightly warmer text to match olive */
 
-  --glass-bg: rgba(20, 24, 15, 0.99);
+  --glass-bg: rgba(20, 24, 15, 0.98);
   --glass-border: rgba(255, 255, 255, 0.06);
   --glass-highlight: rgba(255, 255, 255, 0.08);
-  --glass-blur: 40px;
+  --glass-blur: 160px;
 
   --brand-accent: #ffffff;
 
@@ -103,9 +103,8 @@ body {
   padding: 3rem 4rem;
 
   background: var(--glass-bg);
-  backdrop-filter: blur(80px);
-  /* Increased blur to smooth gradients */
-  -webkit-backdrop-filter: blur(80px);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 
   border: 1px solid var(--glass-border);
   border-top: 1px solid var(--glass-highlight);
