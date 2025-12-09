@@ -8,6 +8,7 @@ interface CardData {
   title: string;
   body: string;
   variant?: 'default' | 'no-header';
+  headerLevel?: 1 | 2;
 }
 
 // --- Configuration Parsing Logic ---
@@ -111,18 +112,23 @@ async function fetchAndRenderCards() {
 }
 
 function parseMarkdown(markdown: string): CardData[] {
-  // Split by H1 headers or "!!" blocks. Use lookahead to keep delimiter.
-  const parts = markdown.split(/(?=^# |^!!)/m).filter(p => p.trim().length > 0);
+  // Split by H1 (# ), H2 (## ), or "!!" blocks. Use lookahead to keep delimiter.
+  const parts = markdown.split(/(?=^# |^## |^!!)/m).filter(p => p.trim().length > 0);
 
   return parts.map(part => {
     const lines = part.split('\n');
     let firstLine = lines[0];
     let variant: 'default' | 'no-header' = 'default';
+    let headerLevel: 1 | 2 = 1;
 
     if (firstLine.startsWith('!!')) {
       variant = 'no-header';
       lines[0] = firstLine.replace(/^!!\s*/, '');
+    } else if (firstLine.startsWith('## ')) {
+      headerLevel = 2;
+      lines[0] = firstLine.replace(/^## /, '');
     } else if (firstLine.startsWith('# ')) {
+      headerLevel = 1;
       lines[0] = firstLine.replace(/^# /, '');
     }
 
@@ -162,7 +168,7 @@ function parseMarkdown(markdown: string): CardData[] {
       });
 
     const body = bodyBlocks.join('');
-    return { title, body, variant };
+    return { title, body, variant, headerLevel };
   });
 }
 
@@ -177,9 +183,10 @@ function renderCards(cards: CardData[]) {
   container.innerHTML = cards.map((card, index) => {
     let headerHtml = '';
     if (card.variant !== 'no-header') {
+      const tag = card.headerLevel === 2 ? 'h2' : 'h1';
       headerHtml = `
           <header>
-            <h1>${card.title}</h1>
+            <${tag}>${card.title}</${tag}>
             <div class="divider"></div>
           </header>`;
     }
