@@ -9,7 +9,10 @@ define:
 I'm a recent **Computer Science** graduate of University of San Francisco, interested in **Machine Learning**, **Quantitative Research**, and **Human Behavior**.
 [@github_icon](https://github.com/abkslm) [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume)
 
-# Card 2
+# Work in Progress
+:)
+
+<!-- # Card 2
 This is a second card.
 This card is much longer than the others.
 Much much longer
@@ -62,4 +65,4 @@ Like crazy long.
 
 
 # Card 6
-This is a sixth card.
+This is a sixth card. -->
