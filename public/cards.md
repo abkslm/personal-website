@@ -28,13 +28,11 @@ And of course, **this website**.
 **Open to opportunities!** 
 [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume)
 
-# I write.
+<!-- # I write.
 **Machines Can't Think** - Dec. 15, 2025
 **Uploaded Intelligence is a Joke** - Jan. 2026
 **The Internet's Last Line of Defense** - Jan. 2026
-
-
-[@substack_icon](https://brainslee.substack.com/)
+[@substack_icon](https://brainslee.substack.com/) -->
 
 
 !!
