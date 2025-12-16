@@ -10,7 +10,7 @@ define:
 I'm a software **engineer**, infrastructure **nerd**, and curious **human**.  
 This website is a work in progress. 
 
-[@github_icon](https://github.com/abkslm) [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume) [@substack_icon](https://brainslee.substack.com/)
+[@github_icon](https://github.com/abkslm) [@linkedin_icon](https://linkedin.com/in/abkslm) [@resume_icon](https://abkslm.com/resume)
 
 # I build.
 **Brink** - An AI-powered mental health app.
