@@ -77,9 +77,9 @@ p {
 }
 
 /*
- * The .more line is currently commented out in index.html. Without it the
- * column is only as wide as the intro, so the slide and re-center steps
- * above are no-ops and the intro simply stays centered.
+ * When this line is shorter than the intro (e.g. "come back soon."), the
+ * column is the intro's width, so the slide-left step is a no-op and only
+ * the move up plays.
  */
 .more {
   min-height: 0;
