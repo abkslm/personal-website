@@ -16,13 +16,27 @@ main {
   color: #8a8a8a;
   font: 300 clamp(1.125rem, 5vw, 2rem) / 1 ui-monospace, "SF Mono", Menlo, monospace;
   letter-spacing: 0.05em;
-  user-select: none;
 }
 
 p {
-  display: flex;
   margin: 0;
+}
+
+/*
+ * The second row starts collapsed so the intro sits alone at dead center;
+ * growing it to 1fr lets the whole block re-center as the line arrives.
+ */
+.stack {
+  display: grid;
+  grid-template-rows: auto 0fr;
+  justify-items: center;
+  animation: expand 1s cubic-bezier(0.65, 0, 0.35, 1) 3.6s forwards;
+}
+
+.intro {
+  display: flex;
   white-space: nowrap;
+  user-select: none;
 }
 
 .hi {
@@ -31,7 +45,7 @@ p {
 
 /*
  * The name grows from zero width, so the centered line widens and pushes
- * "hi." to the left. Monospace makes ch exact: " i’m andrew" is 11 chars,
+ * "hi." to the left. Monospace makes ch exact: " i’m andrew." is 12 chars,
  * plus slack for letter-spacing.
  */
 .name {
@@ -43,6 +57,43 @@ p {
   animation:
     reveal 1.2s cubic-bezier(0.65, 0, 0.35, 1) 1.8s forwards,
     fade-in 0.9s ease-out 2.4s forwards;
+}
+
+.more {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.more p {
+  padding: 1.1rem 1.5rem 0;
+  color: #5c5c5c;
+  /* never smaller than 14px so it stays legible and tappable on phones */
+  font-size: max(0.55em, 0.875rem);
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: balance;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: slide-down 1s cubic-bezier(0.22, 1, 0.36, 1) 3.6s forwards;
+}
+
+a {
+  color: #8a8a8a;
+  text-decoration: underline;
+  text-decoration-color: #3a3a3a;
+  text-underline-offset: 0.25em;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+a:hover,
+a:focus-visible {
+  color: #d0d0d0;
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 1px solid #5c5c5c;
+  outline-offset: 0.25em;
 }
 
 @keyframes fade-in {
@@ -57,19 +108,43 @@ p {
 
 @keyframes reveal {
   to {
-    max-width: 12ch;
+    max-width: 14ch;
+  }
+}
+
+@keyframes expand {
+  to {
+    grid-template-rows: auto 1fr;
+  }
+}
+
+@keyframes slide-down {
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
+  .stack,
   .hi,
-  .name {
+  .name,
+  .more p {
     animation: none;
+  }
+
+  .stack {
+    grid-template-rows: auto 1fr;
   }
 
   .name {
     max-width: none;
+  }
+
+  .name,
+  .more p {
     opacity: 1;
+    transform: none;
   }
 }
