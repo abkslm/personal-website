@@ -76,6 +76,11 @@ p {
     fade-in 0.9s ease-out 1.8s forwards;
 }
 
+/*
+ * The .more line is currently commented out in index.html. Without it the
+ * column is only as wide as the intro, so the slide and re-center steps
+ * above are no-ops and the intro simply stays centered.
+ */
 .more {
   min-height: 0;
   overflow: hidden;
