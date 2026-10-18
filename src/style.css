@@ -27,12 +27,13 @@ p {
 /*
  * One column, as wide as the longer second line. Its row starts collapsed so
  * the intro sits alone at dead center; growing it to 1fr lets the whole block
- * re-center as the line arrives.
+ * re-center as the line arrives. This waits for the intro's slide left to
+ * finish, so the motion reads as left-then-up rather than diagonal.
  */
 .stack {
   display: grid;
   grid-template-rows: auto 0fr;
-  animation: expand 1s cubic-bezier(0.65, 0, 0.35, 1) 3s forwards;
+  animation: expand 0.9s cubic-bezier(0.65, 0, 0.35, 1) 3.9s forwards;
 }
 
 /*
@@ -52,7 +53,7 @@ p {
 }
 
 .intro::before {
-  animation: collapse 1s cubic-bezier(0.65, 0, 0.35, 1) 3s forwards;
+  animation: collapse 0.8s cubic-bezier(0.65, 0, 0.35, 1) 3s forwards;
 }
 
 .hi {
@@ -93,7 +94,7 @@ p {
   white-space: nowrap;
   opacity: 0;
   transform: translateY(-100%);
-  animation: slide-down 1s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+  animation: slide-down 1s cubic-bezier(0.22, 1, 0.36, 1) 3.9s forwards;
 }
 
 a {
