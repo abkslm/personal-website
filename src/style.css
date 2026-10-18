@@ -11,7 +11,9 @@ main {
   /* dvh tracks the visible area as mobile browser chrome shows/hides */
   min-height: 100vh;
   min-height: 100dvh;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding:
+    env(safe-area-inset-top) max(1rem, env(safe-area-inset-right))
+    env(safe-area-inset-bottom) max(1rem, env(safe-area-inset-left));
   box-sizing: border-box;
   color: #8a8a8a;
   font: 300 clamp(1.125rem, 5vw, 2rem) / 1 ui-monospace, "SF Mono", Menlo, monospace;
@@ -23,20 +25,34 @@ p {
 }
 
 /*
- * The second row starts collapsed so the intro sits alone at dead center;
- * growing it to 1fr lets the whole block re-center as the line arrives.
+ * One column, as wide as the longer second line. Its row starts collapsed so
+ * the intro sits alone at dead center; growing it to 1fr lets the whole block
+ * re-center as the line arrives.
  */
 .stack {
   display: grid;
   grid-template-rows: auto 0fr;
-  justify-items: center;
-  animation: expand 1s cubic-bezier(0.65, 0, 0.35, 1) 3.6s forwards;
+  animation: expand 1s cubic-bezier(0.65, 0, 0.35, 1) 3s forwards;
 }
 
+/*
+ * Equal flexible spacers center the intro within the column; collapsing the
+ * left one slides it over to share the second line's left edge.
+ */
 .intro {
   display: flex;
   white-space: nowrap;
   user-select: none;
+}
+
+.intro::before,
+.intro::after {
+  content: "";
+  flex: 1 0 0;
+}
+
+.intro::before {
+  animation: collapse 1s cubic-bezier(0.65, 0, 0.35, 1) 3s forwards;
 }
 
 .hi {
@@ -55,8 +71,8 @@ p {
   max-width: 0;
   opacity: 0;
   animation:
-    reveal 1.2s cubic-bezier(0.65, 0, 0.35, 1) 1.8s forwards,
-    fade-in 0.9s ease-out 2.4s forwards;
+    reveal 1.2s cubic-bezier(0.65, 0, 0.35, 1) 1.2s forwards,
+    fade-in 0.9s ease-out 1.8s forwards;
 }
 
 .more {
@@ -64,17 +80,20 @@ p {
   overflow: hidden;
 }
 
+/*
+ * Kept to one line so both lines share a left edge. The line is ~22em wide
+ * (33 monospace chars plus letter-spacing), so the min() shrinks it just
+ * enough to fit narrow phones, with a little slack for font differences.
+ */
 .more p {
-  padding: 1.1rem 1.5rem 0;
+  padding-top: 1.1rem;
   color: #5c5c5c;
-  /* never smaller than 14px so it stays legible and tappable on phones */
-  font-size: max(0.55em, 0.875rem);
+  font-size: min(max(0.55em, 0.875rem), calc((100vw - 2rem) / 23));
   line-height: 1.6;
-  text-align: center;
-  text-wrap: balance;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(-100%);
-  animation: slide-down 1s cubic-bezier(0.22, 1, 0.36, 1) 3.6s forwards;
+  animation: slide-down 1s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
 }
 
 a {
@@ -112,6 +131,12 @@ a:focus-visible {
   }
 }
 
+@keyframes collapse {
+  to {
+    flex-grow: 0;
+  }
+}
+
 @keyframes expand {
   to {
     grid-template-rows: auto 1fr;
@@ -128,6 +153,7 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
 
   .stack,
+  .intro::before,
   .hi,
   .name,
   .more p {
@@ -136,6 +162,10 @@ a:focus-visible {
 
   .stack {
     grid-template-rows: auto 1fr;
+  }
+
+  .intro::before {
+    flex-grow: 0;
   }
 
   .name {
